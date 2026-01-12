@@ -4,24 +4,27 @@ export async function getProducts(): Promise<Product[]> {
   const res = await fetch("https://fakestoreapi.com/products");
 
   if (!res.ok) {
-    throw new Error("Failed to fetch products");
+    console.error("Failed to fetch products");
+    return [];
   }
 
   return res.json();
 }
 
-export async function getProduct(id: string): Promise<Product> {
-  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+export async function getProduct(id: string) {
+  try {
+    const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch product: ${res.status}`);
+    if (!res.ok) {
+      console.error(`Failed to fetch product: ${res.status}`);
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return [];
   }
-
-  const text = await res.text();
-
-  if (!text) {
-    throw new Error("Empty response from API");
-  }
-
-  return JSON.parse(text);
 }
