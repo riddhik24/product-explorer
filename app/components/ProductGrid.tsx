@@ -9,7 +9,7 @@ import FavoritesFilter from "./FavoritesFilter"
 interface Props {
   products: Product[]
 }
-
+ 
 export default function ProductGrid({ products }: Props) {
   const [favorites, setFavorites] = useState<number[]>([])
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false)

@@ -1,7 +1,9 @@
 import { Product } from "../types/product";
 
 export async function getProducts(): Promise<Product[]> {
-  const res = await fetch("https://fakestoreapi.com/products");
+  const res = await fetch("https://fakestoreapi.com/products", {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     console.error("Failed to fetch products");
@@ -11,7 +13,7 @@ export async function getProducts(): Promise<Product[]> {
   return res.json();
 }
 
-export async function getProduct(id: string) {
+export async function getProduct(id: string): Promise<Product | null> {
   try {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
       cache: "no-store",
@@ -19,12 +21,12 @@ export async function getProduct(id: string) {
 
     if (!res.ok) {
       console.error(`Failed to fetch product: ${res.status}`);
-      return [];
+      return null;
     }
 
     return res.json();
   } catch (error) {
     console.error(error);
-    return [];
+    return null;
   }
 }
