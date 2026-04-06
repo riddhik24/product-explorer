@@ -16,11 +16,12 @@ export default function ProductCard({
   isFavorite,
   onToggleFavorite,
 }: ProductCardProps) {
+
   return (
     <div className="border rounded-lg shadow-sm hover:shadow-lg transition h-full flex flex-col">
       <div className="relative">
         <Image
-          src={product.image}
+          src={product.thumbnail}
           alt={product.title}
           width={300}
           height={300}

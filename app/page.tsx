@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 export default async function HomePage() {
   const products = await getProducts()
 
+  // console.log(products)
   return (
     <main className="p-4 max-w-7xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Product Explorer</h1>

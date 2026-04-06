@@ -26,11 +26,13 @@ export default function ProductGrid({ products }: Props) {
     setFavorites(updated)
     saveFavorites(updated)
   }
+  // console.log(products.products)
 
   const visibleProducts = showOnlyFavorites
     ? products.filter((p) => favorites.includes(p.id))
     : products
 
+    // console.log(visibleProducts)
   return (
     <div>
       <div className="flex gap-4 mb-6 justify-end">
@@ -46,7 +48,7 @@ export default function ProductGrid({ products }: Props) {
             No favorite products found
           </p>
         ) : (
-          visibleProducts.map((prod) => (
+          visibleProducts?.map((prod) => (
             <ProductCard
               key={prod.id}
               product={prod}

@@ -1,7 +1,7 @@
-import { Product } from "../types/product";
+import { Product, ProductsResponse } from "../types/product";
 
 export async function getProducts(): Promise<Product[]> {
-  const res = await fetch("https://fakestoreapi.com/products", {
+  const res = await fetch("https://dummyjson.com/products", {
     cache: "no-store",
   });
 
@@ -9,13 +9,13 @@ export async function getProducts(): Promise<Product[]> {
     console.error("Failed to fetch products");
     return [];
   }
-
-  return res.json();
+  const data: ProductsResponse = await res.json();
+  return data.products;
 }
 
 export async function getProduct(id: string): Promise<Product | null> {
   try {
-    const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    const res = await fetch(`https://dummyjson.com/products/${id}`, {
       cache: "no-store",
     });
 

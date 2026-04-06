@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getProduct } from "../../lib/api";
+import Link from "next/link";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -14,12 +15,19 @@ export default async function ProductDetails({ params }: Props) {
     <>
       {product ? (
         <div className="max-w-4xl mx-auto p-4 text-center">
+          <Link
+            href={`/`}
+            className="mt-auto px-4 py-3 text-center text-blue-600 font-medium hover:scale-105 duration-300 hover:underline"
+          >
+            Go back
+          </Link>
           <Image
             width={100}
             height={80}
-            src={product.image}
+            src={product.thumbnail}
             alt={product.title}
             className="w-full h-80 object-contain"
+            loading="eager"
           />
           <h1 className="text-2xl font-bold mt-4">{product.title}</h1>
           <p className="text-gray-600 mt-2">{product.category}</p>
